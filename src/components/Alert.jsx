@@ -1,12 +1,18 @@
-import { useState } from "react";
+import PropTypes from 'prop-types';
 
-function Alert({alerta, color}){
-    const [alert, setAlert] = useState ("")
-    return(
+
+const Alert = ({ children, color }) => {
+    return (
         <>
-        {<h2 style={{color: {color}}}>{alerta}</h2>}
-        </>
-    )
-}
+      <div className={`alert alert-${color} my-2`}>{children}</div>
+       </>
+    );
+};
+Alert.propTypes = {
+    children: PropTypes.node.isRequired,
+    color: PropTypes.string.isRequired,
+    mensaje: PropTypes.string.isRequired,
+    tipo: PropTypes.string.isRequired
+};
 
 export default Alert;

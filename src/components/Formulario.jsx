@@ -1,68 +1,47 @@
 import { useState } from "react";
-import { BaseColaboradores } from "../assets/BaseColaboradores";
-import Table from 'react-bootstrap/Table';
-import Alert from "./Alert"
 import Button from 'react-bootstrap/Button';
 
-function Formulario(){
-    //Estados para cada elemento del objeto
-    const [colaborador, setColaborador] = useState(BaseColaboradores)
-    const [nombre, setNombre] = useState("")
-    const [correo, setCorreo] = useState("")
-    const [edad, setEdad] = useState ("")
-    const [cargo, setCargo] = useState ("")
-    const [telefono, setTelefono] = useState ("")
-    const [alert, setAlert] = useState ("")
+function Formulario({onSubmit, setAlert}){
+
+    const [colab, setColab] = useState({ nombre: "", correo: "", edad: "", cargo: "", telefono: ""})
+    
   
-  //Función para agregar un nuevo usuario a la lista (onSubmit)
-    function agregarUsuario(e){
-      e.preventDefault()
-      const ultimoId = colaborador[colaborador.length - 1].id
-      const nuevoUsuario = {id: ultimoId+1, nombre: nombre, correo: correo, edad: edad, cargo: cargo, telefono: telefono}
-      if (nombre === "" || correo === "" || edad === "" || cargo === "" || telefono === ""){
-        return setAlert("Debes completar todos los campos")
+    const handleChange = (event) => {
+        setColab({ ...colab, [event.target.name]: event.target.value })
       }
-      setColaborador([...colaborador, nuevoUsuario])
-      setAlert("Usuario agregado con éxito")
-      setNombre("")
-      setCorreo("")
-      console.log(colaborador)
-    }
+    
+      //Funcion para enviar el formulario
+    
+      const handleSubmit = (event) => {
+        event.preventDefault()
+        if (
+          colab.nombre === "" || colab.correo === "" || colab.edad === "" || colab.cargo === "" || colab.telefono === "") {
+          setAlert({
+            error: true,
+            mensaje: "Debes completar todos los campos",
+            color: "warning",
+          })
+        return
+        }
+    
+        onSubmit(colab)
+        // Reinicia el formulario y muestra la alerta de éxito
+        setColab({ nombre: "", correo: "", edad: "", cargo: "", telefono: ""})
+        setAlert({error: false, mensaje: "Se agregó el colaborador", color: "primary"})
+      }
+
     return(
         <>
-            <Table striped bordered hover>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Edad</th>
-                    <th>Teléfono</th>
-                    <th>Teléfono</th>
-                </tr>
-             </thead>
-            <tbody>
-                {colaborador.map((elemento) => 
-                <tr style={{border: "2px solid black"}}>
-                    <td>{elemento.nombre}</td>
-                    <td>{elemento.correo}</td>
-                    <td>{elemento.edad}</td>
-                    <td>{elemento.cargo}</td>
-                    <td>{elemento.telefono}</td>
-                </tr>)}
-            </tbody>
-        </Table>
 
-        <form className="formulario" onSubmit={agregarUsuario}>
-                <input className="entrada" type="text" placeholder="Ingrese el nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
-                <input className="entrada" type="email" placeholder="Ingrese el correo" value={correo} onChange={(e) => setCorreo(e.target.value)}/>
-                <input className="entrada" type="text" placeholder="Ingrese la edad" value={edad} onChange={(e) => setEdad(e.target.value)}/>
-                <input className="entrada" type="text" placeholder="Ingrese el cargo" value={cargo} onChange={(e) => setCargo(e.target.value)}/>
-                <input className="entrada" type="text" placeholder="Ingrese el telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)}/>
+        <form className="formulario" onSubmit={handleSubmit}>
+                <input className="entrada" type="text" placeholder="Ingrese el nombre" name="nombre" value={colab.nombre} onChange={handleChange}/>
+                <input className="entrada" type="email" placeholder="Ingrese el correo" name="correo" value={colab.correo} onChange={handleChange}/>
+                <input className="entrada" type="text" placeholder="Ingrese la edad" name="edad" value={colab.edad} onChange={handleChange}/>
+                <input className="entrada" type="text" placeholder="Ingrese el cargo" name="cargo" value={colab.cargo} onChange={handleChange}/>
+                <input className="entrada" type="text" placeholder="Ingrese el telefono" name="telefono" value={colab.telefono} onChange={handleChange}/>
                 <Button type="submit">Agregar Colaborador</Button>
-                {<h5>{alert}</h5>}
         </form>
-            <Alert alerta="" color="{}"/>
-        </>
+       </>
     )
 }
 
