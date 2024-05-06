@@ -6,6 +6,9 @@ import Formulario from "./components/Formulario";
 import Buscador from "./components/Buscador";
 import Alert from "./components/Alert";
 import './App.css'
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 function App() {
   const [baseColaboradores, setBaseColaboradores] = useState(BaseColaboradores)
@@ -38,16 +41,25 @@ function App() {
   return (
 
     <>
-    <h1>Colaboradores</h1>
-    <div className="container">
-      <div>
-        <Buscador onChange={handleChange} search={search}/>
-        <Listado baseColaboradores={filtrarColab} eliminarColab={eliminarColab}/>
+      <Navbar bg="light" data-bs-theme="light">
+        <Container>
+          <Navbar.Brand href="#home" className="me-auto"><strong>Colaboradores</strong></Navbar.Brand>
+        </Container>
+      </Navbar>
+    <div className="container-main">
+      <div className="titulo">
+        <h1></h1>
       </div>
-      <div className="form-container">
-        <Formulario setAlert={setAlert} onSubmit={handleSubmit} />
-        {alert.mensaje && <Alert color={alert.color}>{alert.mensaje}</Alert>}
-      </div>  
+      <div className="container">
+        <div className="lista-container">
+          <Buscador onChange={handleChange} search={search}/>
+          <Listado baseColaboradores={filtrarColab} eliminarColab={eliminarColab}/>
+        </div>
+        <div className="form-container">
+          <Formulario setAlert={setAlert} onSubmit={handleSubmit} />
+          {alert.mensaje && <Alert color={alert.color}>{alert.mensaje}</Alert>}
+        </div>  
+      </div>
     </div>
     
    </>

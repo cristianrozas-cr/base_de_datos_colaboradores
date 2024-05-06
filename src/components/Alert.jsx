@@ -2,11 +2,7 @@ import PropTypes from 'prop-types';
 
 
 const Alert = ({ children, color }) => {
-    return (
-        <>
-      <div className={`alert alert-${color} my-2`}>{children}</div>
-       </>
-    );
+    return <div className={`alert alert-${color} m-2 w-75`}>{children}</div>
 };
 Alert.propTypes = {
     children: PropTypes.node.isRequired,

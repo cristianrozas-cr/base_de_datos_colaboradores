@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 function Listado({ baseColaboradores, eliminarColab }){
     return(
         <>
+        <h4>Lista de colaboradores</h4>
         <Table striped bordered hover>
             <thead>
                 <tr>
@@ -22,7 +23,8 @@ function Listado({ baseColaboradores, eliminarColab }){
                     <td>{elemento.edad}</td>
                     <td>{elemento.cargo}</td>
                     <td>{elemento.telefono}</td>
-                    <td><span onClick={() => eliminarColab(elemento)}>Eliminar</span></td>
+                    <td><span className='borrar' onClick={() => eliminarColab(elemento)}>Borrar</span></td>
+
                 </tr>)}
             </tbody>
         </Table>

@@ -1,14 +1,33 @@
-#root {
-  margin: 0 auto;
-  padding: 2rem;
+
+body{
+  background-color: #083D77;
+}
+
+.container-main{
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+}
+
+.titulo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8rem;
+  text-transform: uppercase;
+  color: white;
 }
 
 .form-container{
-
+  background-color: white;
+  border-radius: 5px;
+  padding: 3rem;
 }
 
-.buscador{
-  
+.lista-container{
+  background-color: white;
+  padding: 4rem;
+  border-radius: 5px;
 }
 
 .formulario{
@@ -18,17 +37,37 @@
   max-width: 250px;
 }
 
+.label{
+  text-align: center;
+  font-weight: bold;
+}
+
 .entrada{
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.393);
   padding: 5px;
+  text-align: center;
 }
 
 .container{
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 50vh;
 }
 
+@media (min-width: 768px) {
+  .container{
+    
+    flex-direction: row-reverse;
+  }
+    
+}
+
+.borrar:hover{
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  padding: 3px 0;
+  border-radius: 2px;
+}

@@ -34,6 +34,7 @@ function Formulario({onSubmit, setAlert}){
         <>
 
         <form className="formulario" onSubmit={handleSubmit}>
+                <label className="label">Agrega un nuevo colaborador</label>
                 <input className="entrada" type="text" placeholder="Ingrese el nombre" name="nombre" value={colab.nombre} onChange={handleChange}/>
                 <input className="entrada" type="email" placeholder="Ingrese el correo" name="correo" value={colab.correo} onChange={handleChange}/>
                 <input className="entrada" type="text" placeholder="Ingrese la edad" name="edad" value={colab.edad} onChange={handleChange}/>
