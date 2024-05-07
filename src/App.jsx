@@ -13,7 +13,7 @@ import Nav from 'react-bootstrap/Nav';
 function App() {
   const [baseColaboradores, setBaseColaboradores] = useState(BaseColaboradores)
   const [alert, setAlert] = useState({ error: "", mensaje: "", color: "" });
-  const [idCounter, setIdCounter] = useState(BaseColaboradores.length+1);
+  const [contador, setContador] = useState(BaseColaboradores.length+1);
   const [search, setSearch] = useState("");
 
   const handleChange = (e) => {
@@ -25,9 +25,9 @@ function App() {
     setBaseColaboradores(listaFiltrada);
   };
   const handleSubmit = (agregarColaborador) => {
-    const colaboradorConId = {...agregarColaborador, id: idCounter};
-    setBaseColaboradores([...baseColaboradores, colaboradorConId]);
-    setIdCounter(idCounter + 1);
+    const nuevoId = {...agregarColaborador, id: contador};
+    setBaseColaboradores([...baseColaboradores, nuevoId]);
+    setContador(contador + 1);
   };
   const filtrarColab = baseColaboradores.filter((colab) => {
     if (

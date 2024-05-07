@@ -33,8 +33,8 @@ function Listado({ baseColaboradores, eliminarColab }){
 }
 
 Listado.propTypes = {
-	baseColaboradores: PropTypes.array.isRequired,
-	eliminarColaborador: PropTypes.func.isRequired,
+	baseColaboradores: PropTypes.array,
+	eliminarColaborador: PropTypes.func,
 };
 
 export default Listado;
